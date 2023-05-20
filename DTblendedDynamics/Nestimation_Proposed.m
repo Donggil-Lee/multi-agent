@@ -1,7 +1,6 @@
 clear all
 clc
 
-rng(1)
 %% define time-varying graph
 callGraph; % generate A1,A2,A3 and D1,D2,D3
 
@@ -22,27 +21,31 @@ p3 = genPageScore(A3,D3,N,m);
 K = 25;
 nu = 0.9;
 
-x = 10*(rand(N,1)-0.5); % state for network size estimation
-z = (rand(N,1)-0.5);                                       % state for PageRank estimation
+x = zeros(N,1); % state for network size estimation
+z = zeros(N,1); % state for PageRank estimation
 
 horizon = K*1500+1;
 X = [];
 Z = [];
-for t = 1:horizon
+vec = [ones(5,1);zeros(5,1)];
+for t = 0:horizon-1
     if mod(t,K)==0
         X = [X x];
         Z = [Z z];
         z = nu*z+ones(N,1)*(1-nu)./max(round(x),1);
-        x = ones(N,1)+x-x(1)*eye(N,1);
-    elseif t < horizon/3
+        x = vec+x-x(1)*eye(N,1);
+    elseif t <= horizon/3
         x = W1*x; 
         z = m*z + (1-m)*A1*pinv(D1)*z;
-    elseif t>=horizon/3 && t< 2*horizon/3
+        vec = [ones(5,1);zeros(5,1)];
+    elseif t> floor(horizon/3) && t<= floor(2*horizon/3)        
         x = W2*x;
         z = m*z + (1-m)*A2*pinv(D2)*z;
+        vec = ones(10,1);
     else
         x = W3*x;
         z = m*z + (1-m)*A3*pinv(D3)*z;
+        vec = [ones(8,1);zeros(2,1)];
     end
 end
 
