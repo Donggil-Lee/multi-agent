@@ -1,20 +1,12 @@
 # multi-agent
 
-This code is for the simulation results regarding the paper [A].
+This code is intended to generate simulation results for the paper [A]. It has two parts.
 
-There exist two parts.
+The first part focuses on the distributed estimation of network size, specifically the total number of agents in the network. We present the estimation result obtained by the proposed algorithm in Section 3.1 of [A]. Additionally, we compare this to those obtained using the Initial Condition Averaging Method (IAM, [B]) and Order Statistics Method (OSM, [C]).
 
-First part is for the distributed estimation of network size, i.e., total number of agent in network.
+The second part is focused on the distributed estimation of PageRank scores. Here, we present the estimation result obtained by the proposed algorithm in Section 3.2 of [A]. We also compare this to those obtained using the Randomized Algorithm (RA, [D]) and the Synchronous Algorithm based on New Interpretation (SANI, [E]).
 
-In this part, we present three estimation results, obtained by the proposed algorithm in Section 3.1 of [A] and other algorithms including the Initial Condition Averaging Method (IAM, [B]) and Order Statistics Method (OSM, [C]).
-
-Second parti is for the distributed estimation of PageRank scores.
-
-In this part, we present three estimation results, obtained by the proposed algorithm in Section 3.2 of [A] and other algorithms including the Randomized Algorith (RA, [D]), and Synchronous Algorithm based on New Interpretation (SANI, [E]).
-
-If you run the file "RunAll.m", then you can get all the simulation results.
-
-
+By running the file "RunAll.m," you can generate all the simulation results.
 
 References
 
